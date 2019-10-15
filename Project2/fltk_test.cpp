@@ -80,6 +80,12 @@ void login_cb(Fl_Widget* Login, void* p)
 	//creates errors and doesn't have if statement to compare values
 	//issue is with data types received from MySQL
 
+	mySession.sql("use hotel;").execute();
+	string userAttempt = attempt->user;
+	string passAttempt = attempt->pass;
+	string query = "insert into loginAttempt values (" + userAttempt + "," + passAttempt + ");";
+
+
 	/*
 	mySession.sql("use hotel;").execute();
 	string userAttempt = attempt->user;
