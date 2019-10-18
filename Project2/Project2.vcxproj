@@ -83,6 +83,9 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\Dependencies\lib\fltklib;..\Dependencies\lib\vs14</AdditionalLibraryDirectories>
     </Link>
+    <Xdcmake>
+      <AdditionalDocumentFile>C:\Users\sales\OneDrive\Documents\Project2-master\Project2;%(AdditionalDocumentFile)</AdditionalDocumentFile>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -117,6 +120,9 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\Dependencies\lib\fltklib;..\Dependencies\lib\vs14</AdditionalLibraryDirectories>
     </Link>
+    <Xdcmake>
+      <AdditionalDocumentFile>C:\Users\sales\OneDrive\Documents\Project2-master\Project2;%(AdditionalDocumentFile)</AdditionalDocumentFile>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
