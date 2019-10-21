@@ -35,6 +35,7 @@ mysqlx::Table login = hotel.getTable("login");
 mysqlx::Table loginAttempt = hotel.getTable("loginAttempt");
 mysqlx::Table guest = hotel.getTable("guest");
 int loginWindow();
+int userMenuWindow();
 int userWindow();
 Fl_Window* win = new Fl_Window(750, 500, "Login");
 
@@ -55,6 +56,7 @@ struct LoginInfo
 	//These are our login and create account buttons
 	Fl_Button *Login;
 	Fl_Button *CreateAcc;
+	
 
 	//These are our text boxes
 	Fl_Box *welcome;
@@ -69,13 +71,24 @@ struct LoginInfo
 	char user[20];
 	char pass[20];
 };
+struct UserMenu
+{
+	Fl_Button *rooms;
+
+	Fl_Box *welcome;
+};
+UserMenu userMenu;
 struct UserPage
 {
 	Fl_Button *getNamesByRoom;
+
 	Fl_Box *getNamesByRoomText;
-	Fl_Input *roomNum;
-	char roomNumber[3];
 	Fl_Box *searchResultsText;
+
+	Fl_Input *roomNum;
+
+	char roomNumber[3];
+	
 };
 UserPage userPage;
 void login_cb(Fl_Widget* Login, void* p)
@@ -115,13 +128,17 @@ void login_cb(Fl_Widget* Login, void* p)
 	{
 		cout << "Login Success" << endl;
 		win->hide();
-
-		userWindow();
+		userMenuWindow();
+		//userWindow();
 	}
 	else
 	{
 		cout << "Login Failed" << endl;
 	}
+}
+void menu_cb(Fl_Widget*, void* p)
+{
+	userWindow();
 }
 void createAcc_cb(Fl_Widget*, void*)
 {
@@ -176,6 +193,24 @@ int loginWindow()
 	//Pass.callback(Pass_cb);
 	win->end();
 	win->show();
+	return Fl::run();
+}
+int userMenuWindow()
+{
+	//TODO Remove menu window
+	//Menu window remains open behind the newly called window.
+	Fl_Window *menu = new Fl_Window(750, 500, "Menu");
+
+	menu->begin();
+
+	userMenu.rooms = new Fl_Button(400, 200, 50, 25, "Rooms");
+	userMenu.welcome = new Fl_Box(250, 0, 200, 200, "Welcome to the user menu");
+	menu->hide();
+	userMenu.rooms->callback(menu_cb, &userMenu);
+	
+	menu->end();
+	menu->show();
+
 	return Fl::run();
 }
 int userWindow()
